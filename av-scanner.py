@@ -54,12 +54,12 @@ def scan_files():
 
     c = db.cursor()
 
-    for r, d, f in os.walk(pathToScan):
+    for r, d, f in os.walk(pathToScan.encode('utf8','surrogateescape')):
         for file in f:
             filePath = os.path.join(r, file)
 
             if os.access(filePath, os.R_OK) == False or os.path.isfile(filePath) == False:
-                logLine("Skipping " + filePath + " File not readable or is a special file")
+                logLine("Skipping " + filePath.decode('utf8','surrogateescape') + " File not readable or is a special file")
                 continue
 
             fileHash = check_output([ "sha1sum", filePath ]).split()[0]
@@ -83,6 +83,7 @@ def scan_files():
 
 def scan(f):
     global scannedFileCount
+    f = f.decode('utf8','surrogateescape')
 
     logLine("Scanning " + f)
 
