@@ -6,6 +6,7 @@ Simple AV scanner (wrapper for ClamAV)
 - Clam AV
 - Python3
 - Python module: clamd
+- Python module: progressbar2
 
 ## Setup
 
@@ -17,13 +18,20 @@ Simple AV scanner (wrapper for ClamAV)
 
 ### Options
 
-- `DISABLE_LOGGING` > Disable the log messages (Default: Logging enabled)
 - `SCAN_DIR` > Absolute path of the directory you wish to scan (Default: $HOME)
 - `QUARANTINE_DIR` > Directory where quarantined items should be moved to. (**Note** Must be writable for the current user) (Default: /var/lib/clamav/quarantine)
 - `DB_FILE` > The location of the database file which keeps track of the scanner/changed files. (Default: /var/lib/av-scanner/file-cache.db)
 
-### Syntax
+### Syntax example
+
+Simple:
 
 ```
-DISABLE_LOGGING=1 SCAN_DIR=/var/www/uploads QUARANTINE_DIR=/var/av/quarantine DB_FILE=/var/run/av.db python3 av-scanner.py
+python3 av-scanner.py
+```
+
+With all options:
+
+```
+SCAN_DIR=/var/www/uploads QUARANTINE_DIR=/var/av/quarantine DB_FILE=/var/run/av.db python3 av-scanner.py
 ```
